@@ -5,6 +5,7 @@ from datetime import datetime
 app = Flask(__name__)
 Scss(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///my_database.db"
+app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
 db = SQLAlchemy(app)
 
 class myTask(db.Model):
