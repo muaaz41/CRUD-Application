@@ -1,0 +1,37 @@
+{% extends 'base.html'%}
+
+{% block head %} 
+<title>Task smash</title>
+{%endblock%}
+
+
+{% block body %}
+<div class ="content">
+    <h1>Task Smash 2.0</h1>
+    {% if task | length < 1 %}
+    <h3>There are no tasks create a one </h3>
+    {% else %}
+    <table>
+        <tr>
+            <th>Tasks</th>
+            <th>Added</th>
+            <th>Actions</th>
+        </tr>
+        {% for tasks in task %}
+            <tr>
+                <td>{{tasks.content}}</td>
+                <td>{{tasks.created.strftime("%Y-%m-%d")}}</td>
+                <td>
+                    <a href="/delete/{{tasks.id}}">Delete</a>
+                    <a href="/update/{{tasks.id}}">Update</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    <form action="/" method="POST">
+        <input type="text" name="content" id="content">
+        <input type="submit" value="Add-task" id="btn-add">
+    </form>
+</div>
+{%endblock%}                       
